@@ -266,9 +266,9 @@ function Concept() {
 /* ------------------------------- collection ------------------------------ */
 
 const products = [
-  { code: "HX-01", name: "Honeycomb Drops", body: "Triple-cell hexagon drop earrings on steel hooks.", price: "€240", img: productEarrings, dot: "bg-cobalt" },
-  { code: "MD-02", name: "Modular Hex Ring", body: "Interlocking cellular band, printed in one piece.", price: "€180", img: productRing, dot: "bg-coral" },
-  { code: "PX-03", name: "Cell Pendant", body: "Single hexagon with cut-out lattice on a fine chain.", price: "€210", img: productPendant, dot: "bg-mineral" },
+  { code: "HX-01", name: "Honeycomb Drops", body: "Triple-cell hexagon drop earrings on steel hooks.", price: "€65", img: productEarrings, dot: "bg-cobalt" },
+  { code: "MD-02", name: "Modular Hex Ring", body: "Interlocking cellular band, printed in one piece.", price: "€120", img: productRing, dot: "bg-coral" },
+  { code: "PX-03", name: "Cell Pendant", body: "Single hexagon with cut-out lattice on a fine chain.", price: "€70", img: productPendant, dot: "bg-mineral" },
 ];
 
 function Collection() {
