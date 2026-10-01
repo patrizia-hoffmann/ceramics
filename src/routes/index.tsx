@@ -77,7 +77,7 @@ function SiteNav() {
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
       <div className="mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 rounded-full border border-border bg-background/90 py-2 pl-4 pr-2 backdrop-blur-md sm:gap-4 sm:pl-5">
         <a href="#top" className="flex min-w-0 items-center gap-2 font-display text-lg font-bold">
-          <img src={transparentLogo} alt="OXID Logo" className="h-8 w-auto" />
+          <img src={transparentLogo} alt="OXID Logo" className="h-20 w-auto" />
         </a>
         <nav className="hidden gap-7 md:flex">
           {links.map((l) => (
