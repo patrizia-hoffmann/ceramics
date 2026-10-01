@@ -6,21 +6,23 @@ import productRing from "@/assets/product-ring.jpg";
 import productPendant from "@/assets/product-pendant.jpg";
 import materialTexture from "@/assets/material-texture.jpg";
 import journalKiln from "@/assets/journal-kiln.jpg";
+import editorialStill from "@/assets/editorial-still.jpg";
+import playgroundFragments from "@/assets/playground-fragments.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "OXID — Jewellery, Engineered" },
+      { title: "OXID — Serious material, playful object" },
       {
         name: "description",
         content:
-          "Additively manufactured technical ceramic jewellery. Alumina (Al₂O₃) objects designed for the body.",
+          "3D-printed technical ceramic jewellery in alumina (Al₂O₃). Product design born from ceramic engineering.",
       },
-      { property: "og:title", content: "OXID — Jewellery, Engineered" },
+      { property: "og:title", content: "OXID — Serious material, playful object" },
       {
         property: "og:description",
         content:
-          "Additively manufactured technical ceramic jewellery. Alumina (Al₂O₃) objects designed for the body.",
+          "3D-printed technical ceramic jewellery in alumina (Al₂O₃). Product design born from ceramic engineering.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -29,6 +31,69 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const wrap = "mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12";
+const tag =
+  "inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/70 backdrop-blur-sm";
+
+/* ------------------------------- primitives ------------------------------ */
+
+function Hex({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} aria-hidden>
+      <polygon points="50,4 92,27 92,73 50,96 8,73 8,27" fill="currentColor" />
+    </svg>
+  );
+}
+
+function Blob({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" className={className} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M47.7,-62.4C60.4,-52.6,68.4,-36.5,72.2,-19.6C76,-2.7,75.6,15,68.3,29.3C61,43.6,46.8,54.6,31.3,61.9C15.8,69.2,-1,72.8,-18.4,69.9C-35.8,67,-53.8,57.6,-64.4,42.6C-75,27.6,-78.2,7,-73.6,-11.3C-69,-29.6,-56.6,-45.6,-41.6,-55.1C-26.6,-64.6,-9,-67.6,8.2,-70.1C25.4,-72.6,35,-72.2,47.7,-62.4Z"
+        transform="translate(100 100)"
+      />
+    </svg>
+  );
+}
+
+/** Small technical drawing of a hex cell with dimension lines. */
+function TechDrawing({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 240 200" className={className} fill="none" stroke="currentColor" aria-hidden>
+      <polygon points="120,30 175,62 175,126 120,158 65,126 65,62" strokeWidth="1.2" />
+      <polygon points="120,52 156,73 156,115 120,136 84,115 84,73" strokeWidth="0.8" strokeDasharray="3 3" />
+      <line x1="120" y1="10" x2="120" y2="178" strokeWidth="0.5" strokeDasharray="6 3" />
+      <line x1="40" y1="94" x2="200" y2="94" strokeWidth="0.5" strokeDasharray="6 3" />
+      <line x1="65" y1="176" x2="175" y2="176" strokeWidth="0.7" />
+      <line x1="65" y1="170" x2="65" y2="182" strokeWidth="0.7" />
+      <line x1="175" y1="170" x2="175" y2="182" strokeWidth="0.7" />
+      <text x="120" y="194" fontSize="8" textAnchor="middle" fill="currentColor" stroke="none" fontFamily="IBM Plex Mono">
+        Ø — mm (placeholder)
+      </text>
+      <text x="182" y="60" fontSize="8" fill="currentColor" stroke="none" fontFamily="IBM Plex Mono">
+        t = var.
+      </text>
+    </svg>
+  );
+}
+
+function SectionHead({ n, label, title, aside }: { n: string; label: string; title: React.ReactNode; aside?: string }) {
+  return (
+    <div className="flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <p className="kicker text-foreground/45">
+          {n} / {label}
+        </p>
+        <h2 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[0.98] tracking-tight sm:text-5xl lg:text-6xl">
+          {title}
+        </h2>
+      </div>
+      {aside && <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">{aside}</p>}
+    </div>
+  );
+}
+
 /* ---------------------------------- nav ---------------------------------- */
 
 function SiteNav() {
@@ -36,29 +101,26 @@ function SiteNav() {
     { label: "Collection", href: "#collection" },
     { label: "Material", href: "#material" },
     { label: "Process", href: "#process" },
+    { label: "Playground", href: "#playground" },
     { label: "Journal", href: "#journal" },
-    { label: "Contact", href: "#contact" },
   ];
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:flex lg:justify-between">
-        <a href="#top" className="font-display text-lg font-bold tracking-tight">
-          OXID<span className="text-accent">.</span>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
+      <div className="mx-auto flex max-w-[88rem] items-center justify-between gap-4 rounded-full border border-border bg-background/85 py-2 pl-5 pr-2 backdrop-blur-md">
+        <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+          <Hex className="h-4 w-4 text-cobalt" />
+          OXID
         </a>
-        <nav className="hidden gap-8 md:flex">
+        <nav className="hidden gap-7 md:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/60 transition-colors hover:text-foreground"
-            >
+            <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">
               {l.label}
             </a>
           ))}
         </nav>
         <a
           href="#collection"
-          className="border border-border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:border-foreground hover:text-foreground"
+          className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-cobalt"
         >
           Cart (0)
         </a>
@@ -71,45 +133,59 @@ function SiteNav() {
 
 function Hero() {
   return (
-    <section id="top" className="border-b border-border pt-16 lg:pt-14">
-      <div className="grid lg:min-h-[calc(100vh-4rem)] lg:grid-cols-[1.05fr_1fr]">
-        <div className="flex flex-col justify-center px-5 py-16 sm:px-8 lg:px-16 lg:py-24">
-          <p className="kicker text-accent">Al₂O₃ — Additive ceramic jewellery</p>
-          <h1 className="mt-8 font-display text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
-            JEWELLERY,
-            <br />
-            ENGINEERED.
-          </h1>
-          <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">
-            Additively manufactured ceramic objects designed for the body.
-          </p>
-          <div className="mt-12 flex flex-wrap items-center gap-6">
+    <section id="top" className={`${wrap} pt-24 sm:pt-28`}>
+      <div className="grid gap-3 lg:grid-cols-12">
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl bg-card p-7 sm:p-10 lg:col-span-7 lg:min-h-[78vh] lg:p-14">
+          <Blob className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 text-lilac/60" />
+          <div className="relative">
+            <span className={`${tag} bg-sand/70`}>
+              <span className="h-1.5 w-1.5 rounded-full bg-coral" /> Al₂O₃ — additive ceramic
+            </span>
+            <h1 className="mt-10 font-display text-[clamp(3.2rem,9vw,8.5rem)] font-bold leading-[0.88] tracking-[-0.04em]">
+              Serious
+              <br />
+              material.
+              <br />
+              <span className="text-cobalt">Playful</span> object.
+            </h1>
+          </div>
+          <div className="relative mt-12 flex flex-wrap items-end justify-between gap-8">
+            <p className="max-w-sm text-lg leading-relaxed text-muted-foreground">
+              Jewellery printed in technical ceramic — the material of bearings and implants, shaped
+              into objects for the body.
+            </p>
             <a
               href="#collection"
-              className="inline-flex items-center gap-3 bg-foreground px-8 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-background transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-4 text-sm font-medium text-background transition-colors hover:bg-cobalt"
             >
-              Explore the collection
-              <span aria-hidden>↓</span>
+              Shop the first series <span aria-hidden>→</span>
             </a>
           </div>
-          <div className="mt-16 hidden max-w-md justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/40 md:flex">
-            <span>Sintered alumina</span>
-            <span>Printed lattice</span>
-            <span>Fig. 01</span>
+        </div>
+
+        <div className="grid gap-3 lg:col-span-5 lg:grid-rows-[1.4fr_1fr]">
+          <div className="relative min-h-[55vh] overflow-hidden rounded-3xl lg:min-h-0">
+            <img src={heroMacro} alt="Macro of a sintered alumina honeycomb structure" width={1200} height={1600} className="absolute inset-0 h-full w-full object-cover" />
+            <span className={`${tag} absolute bottom-4 left-4`}>Fig. 01 — HX lattice</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col justify-between rounded-3xl bg-cobalt p-6 text-accent-foreground">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">Material</span>
+              <span className="font-display text-4xl font-bold tracking-tight">Al₂O₃</span>
+            </div>
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl bg-stone/50 p-5 text-foreground/70">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em]">Drawing 01</span>
+              <TechDrawing className="mx-auto h-full max-h-36 w-full" />
+            </div>
           </div>
         </div>
-        <div className="relative min-h-[70vh] border-t border-border lg:min-h-0 lg:border-l lg:border-t-0">
-          <img
-            src={heroMacro}
-            alt="Macro view of a sintered alumina ceramic honeycomb structure"
-            className="absolute inset-0 h-full w-full object-cover"
-            width={1200}
-            height={1600}
-          />
-          <div className="absolute bottom-4 left-4 bg-background/90 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70 backdrop-blur-sm">
-            HX lattice — wall thickness variable
-          </div>
-        </div>
+      </div>
+
+      <div className="mt-6 flex flex-wrap justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
+        <span>Printed layer by layer</span>
+        <span>Sintered, unglazed</span>
+        <span>Numbered small series</span>
+        <span className="hidden sm:inline">Scroll ↓</span>
       </div>
     </section>
   );
@@ -119,224 +195,27 @@ function Hero() {
 
 function Concept() {
   return (
-    <section id="concept" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:px-16 lg:py-36">
-        <div className="lg:col-span-5">
-          <p className="kicker text-foreground/40">01 — Concept</p>
-          <h2 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            Technical ceramic,
-            <br />
-            shaped into jewellery.
-          </h2>
-        </div>
-        <div className="space-y-6 text-base leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-7">
-          <p>
-            Alumina — Al₂O₃ — belongs to the family of engineering ceramics used in
-            machine components, medical technology and industrial tooling. Not a
-            craft clay, but a technical material: dense, hard and dimensionally
-            precise after firing.
+    <section id="concept" className={`${wrap} scroll-mt-24 py-28 lg:py-40`}>
+      <div className="grid gap-12 lg:grid-cols-12">
+        <p className="kicker text-foreground/45 lg:col-span-2">01 / Concept</p>
+        <div className="lg:col-span-9">
+          <p className="font-display text-3xl font-medium leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">
+            A product design brand born from{" "}
+            <span className="rounded-full bg-lilac/50 px-3">ceramic engineering</span>. We print
+            alumina into geometries casting can't reach — then let{" "}
+            <span className="rounded-full bg-coral/30 px-3">colour</span> and play do the rest.
           </p>
-          <p>
-            Additive manufacturing produces geometries that casting or carving
-            cannot: open cellular lattices, honeycomb structures, interlocking
-            modules — with walls a fraction of a millimetre thin.
-          </p>
-          <p className="font-display text-lg font-medium text-foreground">
-            The result is not decorated metal. It is structure itself, made
-            wearable.
-          </p>
-        </div>
-        <div className="lg:col-span-2 lg:col-start-11 lg:pt-2">
-          <ul className="space-y-4 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-            <li className="border-t border-border pt-4">Material</li>
-            <li className="border-t border-border pt-4">Geometry</li>
-            <li className="border-t border-border pt-4">Process</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------- material ------------------------------- */
-
-const materialProps = [
-  {
-    id: "M-01",
-    title: "Hardness",
-    body: "Polycrystalline alumina is extremely hard and keeps crisp edges and thin walls through everyday wear.",
-  },
-  {
-    id: "M-02",
-    title: "Thermal stability",
-    body: "The material is fired at temperatures far beyond anything it will encounter on the body — and it shows.",
-  },
-  {
-    id: "M-03",
-    title: "Chemical inertness",
-    body: "Unaffected by water, sweat and everyday chemicals; the surface does not oxidize or tarnish.",
-  },
-  {
-    id: "M-04",
-    title: "Skin-friendly",
-    body: "Alumina is a biocompatible engineering ceramic, long established in medical technology.",
-  },
-  {
-    id: "M-05",
-    title: "Matte surface",
-    body: "An unglazed, light-scattering white that reads as mineral rather than glazed or metallic.",
-  },
-];
-
-function Material() {
-  return (
-    <section id="material" className="scroll-mt-20 border-b border-border bg-foreground text-background">
-      <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
-        <div className="px-5 py-24 sm:px-8 lg:px-16 lg:py-36">
-          <p className="kicker text-background/40">02 — Material</p>
-          <h2 className="mt-6 font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Alumina
-            <span className="text-accent"> / </span>Al₂O₃
-          </h2>
-          <p className="mt-8 max-w-md leading-relaxed text-background/60">
-            The same class of material as machine bearings and implant
-            components — printed, fired and finished as jewellery. No plating,
-            no coating: the colour and surface are the material itself.
-          </p>
-          <dl className="mt-14">
-            {materialProps.map((p) => (
-              <div
-                key={p.id}
-                className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 border-t border-background/15 py-5 sm:grid-cols-[5rem_10rem_1fr] sm:items-baseline"
-              >
-                <dt className="font-mono text-[10px] tracking-[0.2em] text-accent">
-                  {p.id}
-                </dt>
-                <dt className="font-display text-base font-medium">{p.title}</dt>
-                <dd className="col-span-2 text-sm leading-relaxed text-background/55 sm:col-span-1">
-                  {p.body}
-                </dd>
+          <div className="mt-14 grid gap-8 text-muted-foreground sm:grid-cols-3">
+            {[
+              ["Material", "A dense, hard, engineering ceramic — not craft clay."],
+              ["Geometry", "Open lattices and interlocking cells, walls under a millimetre."],
+              ["Object", "Not decorated metal. Structure itself, made wearable."],
+            ].map(([t, b]) => (
+              <div key={t} className="border-t border-border pt-5">
+                <p className="font-display text-base font-bold text-foreground">{t}</p>
+                <p className="mt-2 text-sm leading-relaxed">{b}</p>
               </div>
             ))}
-          </dl>
-        </div>
-        <div className="relative min-h-[50vh] border-t border-background/15 lg:min-h-0 lg:border-l lg:border-t-0">
-          <img
-            src={materialTexture}
-            alt="Macro texture of a sintered alumina ceramic surface"
-            loading="lazy"
-            width={1200}
-            height={1200}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute bottom-4 left-4 bg-foreground/85 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-background/70 backdrop-blur-sm">
-            Sintered surface — as fired, unglazed
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* --------------------------------- process ------------------------------- */
-
-const processSteps = [
-  { n: "01", title: "Digital design", body: "Parametric CAD models — cell size, wall thickness and module count as variables." },
-  { n: "02", title: "3D printing", body: "Layer-by-layer printing of the green ceramic parts, full geometry at zero strength." },
-  { n: "03", title: "Debinding", body: "Controlled thermal removal of the binder from the printed parts." },
-  { n: "04", title: "Sintering", body: "High-temperature firing: the part densifies into polycrystalline alumina." },
-  { n: "05", title: "Finishing", body: "Precision grinding and surface finishing to final dimension." },
-  { n: "06", title: "Assembly", body: "Findings attached, every piece checked and numbered by hand." },
-];
-
-function Process() {
-  return (
-    <section id="process" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-16 lg:py-36">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="kicker text-foreground/40">03 — Process</p>
-            <h2 className="mt-6 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              From file to fired object.
-            </h2>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Six stages between the digital model and the finished piece. Nothing
-            is carved, cast or moulded.
-          </p>
-        </div>
-        <ol className="mt-16 grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
-          {processSteps.map((s) => (
-            <li
-              key={s.n}
-              className="group border-b border-border p-6 sm:border-r lg:p-8 [&:nth-child(2n)]:sm:border-r-0 [&:nth-child(3n)]:lg:border-r-0"
-            >
-              <div className="flex items-baseline justify-between">
-                <span className="font-mono text-xs tracking-[0.2em] text-accent">{s.n}</span>
-                <span aria-hidden className="font-mono text-xs text-foreground/25 transition-colors group-hover:text-accent">
-                  →
-                </span>
-              </div>
-              <h3 className="mt-4 font-display text-xl font-medium">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------- structure ------------------------------ */
-
-const palette = [
-  { label: "Cobalt", className: "bg-accent" },
-  { label: "Oxide red", className: "bg-oxide" },
-  { label: "Graphite", className: "bg-foreground" },
-  { label: "Bone", className: "bg-muted" },
-];
-
-function Structure() {
-  return (
-    <section id="structure" className="scroll-mt-20 border-b border-border bg-card">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:px-16 lg:py-36">
-        <div className="lg:col-span-5">
-          <p className="kicker text-foreground/40">04 — Structure</p>
-          <h2 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            Modular. Cellular.
-            <br />
-            Interlocking.
-          </h2>
-          <p className="mt-8 max-w-md leading-relaxed text-muted-foreground">
-            The collection is built from hexagonal cells — a geometry that packs
-            perfectly, repeats infinitely and carries load efficiently. Modules
-            connect through engineered joints printed in place, without glue or
-            solder.
-          </p>
-          <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
-            Multimaterial editions pair sintered white alumina with selectively
-            coloured ceramic elements. Colour is applied in the material, not on
-            top of it.
-          </p>
-        </div>
-        <div className="lg:col-span-6 lg:col-start-7">
-          <div className="border border-border bg-background p-8 sm:p-12">
-            <div className="flex flex-wrap items-end gap-6">
-              {palette.map((c) => (
-                <div key={c.label} className="flex flex-col items-center gap-3">
-                  <div
-                    className={`h-16 w-[4.6rem] sm:h-20 sm:w-[5.7rem] ${c.className}`}
-                    style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
-                  />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-                    {c.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-10 border-t border-border pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/40">
-              Colour editions — placeholder palette
-            </p>
           </div>
         </div>
       </div>
@@ -347,73 +226,203 @@ function Structure() {
 /* ------------------------------- collection ------------------------------ */
 
 const products = [
-  {
-    code: "HX-01",
-    name: "Honeycomb Drops",
-    body: "Triple-cell hexagon drop earrings on steel hooks.",
-    price: "€240",
-    img: productEarrings,
-  },
-  {
-    code: "MD-02",
-    name: "Modular Hex Ring",
-    body: "Interlocking cellular band, printed in one piece.",
-    price: "€180",
-    img: productRing,
-  },
-  {
-    code: "PX-03",
-    name: "Cell Pendant",
-    body: "Single hexagon with cut-out lattice on a fine steel chain.",
-    price: "€210",
-    img: productPendant,
-  },
+  { code: "HX-01", name: "Honeycomb Drops", body: "Triple-cell hexagon drop earrings on steel hooks.", price: "€240", img: productEarrings, dot: "bg-cobalt" },
+  { code: "MD-02", name: "Modular Hex Ring", body: "Interlocking cellular band, printed in one piece.", price: "€180", img: productRing, dot: "bg-coral" },
+  { code: "PX-03", name: "Cell Pendant", body: "Single hexagon with cut-out lattice on a fine chain.", price: "€210", img: productPendant, dot: "bg-mineral" },
 ];
 
 function Collection() {
   return (
-    <section id="collection" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-16 lg:py-36">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+    <section id="collection" className={`${wrap} scroll-mt-24 pb-28 lg:pb-40`}>
+      <SectionHead n="02" label="Collection" title="First series: the hexagonal system." aside="Three pieces, small numbered series. Prices and availability are placeholders." />
+      <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((p) => (
+          <article key={p.code} className="group flex flex-col rounded-3xl bg-card p-3">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
+              <img src={p.img} alt={p.name} loading="lazy" width={1200} height={1504} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+              <span className={`${tag} absolute left-3 top-3`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${p.dot}`} /> {p.code}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="font-display text-xl font-bold tracking-tight">{p.name}</h3>
+                <span className="font-mono text-sm">{p.price}</span>
+              </div>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              <button className="mt-5 w-full rounded-full border border-border px-4 py-3 text-sm font-medium transition-colors hover:border-foreground hover:bg-foreground hover:text-background">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------- editorial ------------------------------ */
+
+function Editorial() {
+  return (
+    <section className={`${wrap} pb-28 lg:pb-40`}>
+      <div className="grid gap-3 lg:grid-cols-12">
+        <div className="relative overflow-hidden rounded-3xl lg:col-span-8">
+          <img src={editorialStill} alt="Ceramic lattice pendant on a lilac paper cylinder with dried flowers and a coral paper form" loading="lazy" width={1600} height={1200} className="h-full w-full object-cover" />
+          <span className={`${tag} absolute bottom-4 left-4`}>Still life — PX-03 with paper forms</span>
+        </div>
+        <div className="flex flex-col justify-between gap-10 rounded-3xl bg-coral p-8 text-foreground lg:col-span-4 lg:p-10">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">Editorial / 01</span>
+          <p className="font-display text-3xl font-bold leading-[1.05] tracking-tight lg:text-4xl">
+            Precise, but never sterile.
+          </p>
+          <p className="text-sm leading-relaxed opacity-80">
+            The pieces are engineered. Everything around them is allowed to be soft, odd and
+            colourful.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------- material ------------------------------- */
+
+const materialProps = [
+  ["Hardness", "Keeps crisp edges and thin walls through everyday wear."],
+  ["Thermal stability", "Fired far beyond anything it meets on the body."],
+  ["Inert", "Unaffected by water and sweat; does not tarnish."],
+  ["Skin-friendly", "A biocompatible ceramic, long used in medical technology."],
+  ["Matte", "Unglazed, light-scattering white that reads as mineral."],
+];
+
+function Material() {
+  return (
+    <section id="material" className={`${wrap} scroll-mt-24 pb-28 lg:pb-40`}>
+      <div className="grid overflow-hidden rounded-3xl bg-foreground text-background lg:grid-cols-2">
+        <div className="p-8 sm:p-12 lg:p-16">
+          <p className="kicker text-background/45">03 / Material</p>
+          <h2 className="mt-5 font-display text-5xl font-bold tracking-tight sm:text-6xl">
+            Alumina<span className="text-lilac">.</span>
+          </h2>
+          <p className="mt-6 max-w-md leading-relaxed text-background/60">
+            The same class of material as machine bearings and implant components. No plating, no
+            coating — colour and surface are the material itself.
+          </p>
+          <dl className="mt-12">
+            {materialProps.map(([t, b], i) => (
+              <div key={t} className="grid grid-cols-[3rem_1fr] gap-x-4 border-t border-background/15 py-4 sm:grid-cols-[3rem_10rem_1fr]">
+                <dt className="font-mono text-[10px] tracking-[0.18em] text-lilac">0{i + 1}</dt>
+                <dt className="font-display font-medium">{t}</dt>
+                <dd className="col-span-2 col-start-2 text-sm text-background/55 sm:col-span-1 sm:col-start-3">{b}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="relative min-h-[50vh]">
+          <img src={materialTexture} alt="Macro texture of a sintered alumina surface" loading="lazy" width={1200} height={1200} className="absolute inset-0 h-full w-full object-cover" />
+          <span className={`${tag} absolute bottom-4 left-4`}>As fired, unglazed</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* --------------------------------- process ------------------------------- */
+
+const processSteps = [
+  { n: "01", title: "Digital design", body: "Parametric CAD — cell size and wall thickness as variables.", c: "bg-lilac/50" },
+  { n: "02", title: "3D printing", body: "Layer-by-layer printing of the green ceramic part.", c: "bg-card" },
+  { n: "03", title: "Debinding", body: "Controlled thermal removal of the binder.", c: "bg-sand/60" },
+  { n: "04", title: "Sintering", body: "High-temperature firing densifies the part.", c: "bg-card" },
+  { n: "05", title: "Finishing", body: "Grinding and surface finishing to final dimension.", c: "bg-mineral/20" },
+  { n: "06", title: "Assembly", body: "Findings attached, checked and numbered by hand.", c: "bg-card" },
+];
+
+function Process() {
+  return (
+    <section id="process" className={`${wrap} scroll-mt-24 pb-28 lg:pb-40`}>
+      <SectionHead n="04" label="Process" title="From file to fired object." aside="Six stages between model and piece. Nothing is carved, cast or moulded." />
+      <ol className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {processSteps.map((s) => (
+          <li key={s.n} className={`flex min-h-56 flex-col justify-between rounded-3xl p-7 ${s.c}`}>
+            <span className="font-mono text-xs tracking-[0.18em] text-foreground/50">{s.n}</span>
+            <div>
+              <h3 className="font-display text-2xl font-bold tracking-tight">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+/* ------------------------------- playground ------------------------------ */
+
+const experiments = [
+  { id: "EXP-014", title: "Colour study", note: "Cobalt × lilac × coral", c: "bg-lilac", shape: "hex" },
+  { id: "EXP-022", title: "Gyroid fragment", note: "Failed print, kept", c: "bg-mineral text-accent-foreground", shape: "blob" },
+  { id: "EXP-031", title: "Soft hex", note: "Rounded cell, 1:1", c: "bg-sand", shape: "hex" },
+  { id: "EXP-037", title: "Paper × ceramic", note: "Styling test", c: "bg-coral", shape: "blob" },
+];
+
+function Playground() {
+  return (
+    <section id="playground" className="scroll-mt-24 bg-sand/40 py-28 lg:py-40">
+      <div className={wrap}>
+        <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <p className="kicker text-foreground/40">05 — Collection</p>
-            <h2 className="mt-6 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              First series — hexagonal system.
+            <p className="kicker text-foreground/45">05 / Playground</p>
+            <h2 className="mt-5 font-display text-[clamp(4rem,14vw,12rem)] font-bold leading-[0.82] tracking-[-0.05em]">
+              PLAY
+              <span className="inline-flex translate-y-[-0.05em] items-center">
+                <Hex className="mx-1 inline h-[0.7em] w-[0.7em] text-cobalt" />
+              </span>
+              GROUND
             </h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Three conceptual pieces. Small series, numbered. Prices and
-            availability are placeholders for this prototype.
+            Prototypes, misprints, colour studies and odd shapes. Experiments are part of the brand,
+            not something to hide.
           </p>
         </div>
-        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {products.map((p, i) => (
-            <article key={p.code} className="group">
-              <div className="relative aspect-[4/5] overflow-hidden bg-muted">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  loading="lazy"
-                  width={1200}
-                  height={1504}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <span className="absolute left-3 top-3 bg-background/90 px-2 py-1 font-mono text-[10px] tracking-[0.2em] text-foreground/70">
-                  {p.code}
-                </span>
+
+        <div className="mt-14 grid gap-3 lg:grid-cols-12">
+          <div className="relative overflow-hidden rounded-3xl lg:col-span-7 lg:row-span-2">
+            <img src={playgroundFragments} alt="Grid of ceramic fragments, lattices and colour samples" loading="lazy" width={1200} height={1200} className="h-full w-full object-cover" />
+            <span className={`${tag} absolute bottom-4 left-4`}>Fragment archive — batch 03</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 lg:col-span-5">
+            {experiments.map((e, i) => (
+              <div
+                key={e.id}
+                className={`group relative flex aspect-square flex-col justify-between overflow-hidden p-5 transition-transform duration-500 hover:-rotate-2 ${e.c} ${
+                  i % 2 ? "rounded-[2.5rem_0.75rem_2.5rem_2.5rem]" : "rounded-3xl"
+                }`}
+              >
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">{e.id}</span>
+                {e.shape === "hex" ? (
+                  <Hex className="absolute right-4 top-4 h-14 w-14 text-background/70 transition-transform duration-700 group-hover:rotate-90" />
+                ) : (
+                  <Blob className="absolute -right-6 -top-6 h-24 w-24 text-background/40 transition-transform duration-700 group-hover:scale-110" />
+                )}
+                <div>
+                  <p className="font-display text-lg font-bold leading-tight">{e.title}</p>
+                  <p className="mt-1 text-xs opacity-70">{e.note}</p>
+                </div>
               </div>
-              <div className="mt-5 flex items-baseline justify-between gap-4">
-                <h3 className="font-display text-xl font-medium">
-                  {String(i + 1).padStart(2, "0")} — {p.name}
-                </h3>
-                <span className="shrink-0 font-mono text-sm">{p.price}</span>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              <button className="mt-5 w-full border border-border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors hover:border-foreground hover:bg-foreground hover:text-background">
-                Add to cart
-              </button>
-            </article>
-          ))}
+            ))}
+          </div>
+          <div className="flex items-center justify-between gap-6 rounded-3xl bg-card p-6 lg:col-span-5">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45">Lab notes</p>
+              <p className="mt-2 font-display text-xl font-bold">New experiments, monthly.</p>
+            </div>
+            <a href="#journal" className="shrink-0 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-cobalt">
+              Read →
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -423,54 +432,36 @@ function Collection() {
 /* --------------------------------- journal ------------------------------- */
 
 const journalEntries = [
-  { id: "001", tag: "CAD", title: "Every piece begins as a parametric model", body: "Cell size, wall thickness, module count — variables, not drawings. The geometry is generated and refined in code." },
-  { id: "002", tag: "Prototypes", title: "Testing scale and weight", body: "First prints in resin and low-fired clay to judge scale, weight and how each module moves on the body." },
-  { id: "003", tag: "Printing", title: "Green parts, fragile as chalk", body: "The parts come off the printer with full geometry and zero strength — handled like wet paper." },
-  { id: "004", tag: "Firing", title: "The kiln does the material", body: "Binder leaves, crystals grow, the part shrinks by a predictable margin. What emerges is dense polycrystalline alumina." },
-  { id: "005", tag: "Finished pieces", title: "Ground, checked, numbered", body: "Finishing, assembly, inspection. Small series — each piece carries its edition number." },
+  { id: "001", tag: "CAD", title: "Every piece begins as a parametric model" },
+  { id: "002", tag: "Prototypes", title: "Testing scale and weight on the body" },
+  { id: "003", tag: "Printing", title: "Green parts, fragile as chalk" },
+  { id: "004", tag: "Firing", title: "The kiln does the material" },
+  { id: "005", tag: "Finished", title: "Ground, checked, numbered" },
 ];
 
 function Journal() {
   return (
-    <section id="journal" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
-        <div className="relative min-h-[50vh] lg:min-h-0 lg:border-r lg:border-border">
-          <img
-            src={journalKiln}
-            alt="Ceramic jewellery components on a kiln shelf during firing"
-            loading="lazy"
-            width={1200}
-            height={1200}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute bottom-4 left-4 bg-background/90 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70 backdrop-blur-sm">
-            Kiln — sintering run, in progress
-          </div>
+    <section id="journal" className={`${wrap} scroll-mt-24 py-28 lg:py-40`}>
+      <SectionHead n="06" label="Journal" title="Development, documented." aside="CAD → prototypes → printing → firing → finished pieces." />
+      <div className="mt-14 grid gap-3 lg:grid-cols-12">
+        <div className="relative min-h-[50vh] overflow-hidden rounded-3xl lg:col-span-5">
+          <img src={journalKiln} alt="Ceramic components on a kiln shelf" loading="lazy" width={1200} height={1200} className="absolute inset-0 h-full w-full object-cover" />
+          <span className={`${tag} absolute bottom-4 left-4`}>Kiln — sintering run</span>
         </div>
-        <div className="px-5 py-24 sm:px-8 lg:px-16 lg:py-36">
-          <p className="kicker text-foreground/40">06 — Journal</p>
-          <h2 className="mt-6 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Development as part of the brand.
-          </h2>
-          <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-            CAD → prototypes → printing → firing → finished pieces. The path from
-            model to object is documented openly.
-          </p>
-          <ol className="mt-14">
-            {journalEntries.map((e) => (
-              <li key={e.id} className="grid grid-cols-[5.5rem_1fr] gap-x-6 border-t border-border py-6 sm:grid-cols-[8rem_1fr]">
-                <span className="font-mono text-[10px] tracking-[0.2em] text-accent">
-                  {e.id}
-                  <span className="mt-2 block text-foreground/30">{e.tag}</span>
+        <ol className="rounded-3xl bg-card p-4 sm:p-8 lg:col-span-7">
+          {journalEntries.map((e) => (
+            <li key={e.id}>
+              <a href="#journal" className="group grid grid-cols-[3.5rem_1fr_auto] items-center gap-4 border-b border-border py-6 last:border-0">
+                <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/40">{e.id}</span>
+                <span>
+                  <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-cobalt">{e.tag}</span>
+                  <span className="font-display text-xl font-bold tracking-tight transition-colors group-hover:text-cobalt sm:text-2xl">{e.title}</span>
                 </span>
-                <div>
-                  <h3 className="font-display text-lg font-medium">{e.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{e.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
+                <span aria-hidden className="text-foreground/30 transition-transform group-hover:translate-x-1 group-hover:text-cobalt">→</span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -479,70 +470,43 @@ function Journal() {
 /* --------------------------------- footer -------------------------------- */
 
 function Footer() {
-  const columns = [
-    {
-      title: "Explore",
-      links: [
-        { label: "Collection", href: "#collection" },
-        { label: "Material", href: "#material" },
-        { label: "Process", href: "#process" },
-        { label: "Journal", href: "#journal" },
-      ],
-    },
-    {
-      title: "Studio",
-      links: [
-        { label: "About", href: "#concept" },
-        { label: "Contact", href: "#contact" },
-      ],
-    },
-    {
-      title: "Elsewhere",
-      links: [
-        { label: "Instagram", href: "#" },
-        { label: "Cart (0)", href: "#collection" },
-      ],
-    },
+  const links = [
+    ["Collection", "#collection"],
+    ["Material", "#material"],
+    ["Process", "#process"],
+    ["Playground", "#playground"],
+    ["Journal", "#journal"],
+    ["About", "#concept"],
+    ["Contact", "#contact"],
+    ["Instagram", "#"],
   ];
   return (
-    <footer id="contact" className="scroll-mt-20 bg-foreground text-background">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="font-display text-3xl font-bold tracking-tight">
-              OXID<span className="text-accent">.</span>
+    <footer id="contact" className="scroll-mt-24 px-3 pb-3 sm:px-5 sm:pb-5">
+      <div className="relative mx-auto max-w-[88rem] overflow-hidden rounded-3xl bg-foreground px-6 py-16 text-background sm:px-12 lg:px-16 lg:py-24">
+        <Blob className="pointer-events-none absolute -bottom-32 -right-20 h-96 w-96 text-cobalt/60" />
+        <div className="relative grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em]">
+              OXID<span className="text-coral">.</span>
             </p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-background/55">
-              Additively manufactured technical ceramic jewellery. Designed and
-              produced as engineered structures for the body.
+              Technical ceramic jewellery, additively manufactured.
             </p>
-            <a
-              href="mailto:studio@example.com"
-              className="mt-8 inline-block border border-background/25 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors hover:border-background hover:bg-background hover:text-foreground"
-            >
+            <a href="mailto:studio@example.com" className="mt-8 inline-block rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-lilac">
               studio@example.com
             </a>
           </div>
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-6 lg:col-start-7">
-            {columns.map((col) => (
-              <div key={col.title}>
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-background/40">
-                  {col.title}
-                </p>
-                <ul className="mt-5 space-y-3">
-                  {col.links.map((l) => (
-                    <li key={l.label}>
-                      <a href={l.href} className="text-sm text-background/70 transition-colors hover:text-background">
-                        {l.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <ul className="grid grid-cols-2 gap-x-10 gap-y-3 self-end lg:col-span-5 lg:col-start-8">
+            {links.map(([l, h]) => (
+              <li key={l}>
+                <a href={h} className="font-display text-lg text-background/70 transition-colors hover:text-background">
+                  {l}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-        <div className="mt-20 flex flex-col gap-3 border-t border-background/15 pt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-background/35 sm:flex-row sm:justify-between">
+        <div className="relative mt-16 flex flex-col gap-3 border-t border-background/15 pt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-background/40 sm:flex-row sm:justify-between">
           <span>© 2026 OXID — prototype</span>
           <span>Names, prices and contact details are placeholders</span>
         </div>
@@ -560,10 +524,11 @@ function Index() {
       <main>
         <Hero />
         <Concept />
+        <Collection />
+        <Editorial />
         <Material />
         <Process />
-        <Structure />
-        <Collection />
+        <Playground />
         <Journal />
       </main>
       <Footer />

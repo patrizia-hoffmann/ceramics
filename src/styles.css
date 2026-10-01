@@ -33,6 +33,12 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-oxide: var(--oxide);
+  --color-cobalt: var(--cobalt);
+  --color-lilac: var(--lilac);
+  --color-coral: var(--coral);
+  --color-mineral: var(--mineral);
+  --color-sand: var(--sand);
+  --color-stone: var(--stone);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -44,30 +50,34 @@
 }
 
 :root {
-  --radius: 0.125rem;
-  /* Warm ceramic off-white */
-  --background: oklch(0.972 0.005 95);
-  --foreground: oklch(0.235 0.008 75);
-  --card: oklch(0.985 0.004 95);
-  --card-foreground: oklch(0.235 0.008 75);
-  --popover: oklch(0.985 0.004 95);
-  --popover-foreground: oklch(0.235 0.008 75);
-  --primary: oklch(0.235 0.008 75);
-  --primary-foreground: oklch(0.972 0.005 95);
-  --secondary: oklch(0.94 0.006 95);
-  --secondary-foreground: oklch(0.235 0.008 75);
-  --muted: oklch(0.94 0.006 95);
-  --muted-foreground: oklch(0.52 0.014 80);
-  /* Deep cobalt — mineral accent */
-  --accent: oklch(0.42 0.16 262);
-  --accent-foreground: oklch(0.972 0.005 95);
-  /* Iron oxide — sparse secondary accent */
+  --radius: 0.875rem;
+  --background: oklch(0.972 0.006 90);
+  --foreground: oklch(0.23 0.008 75);
+  --card: oklch(0.99 0.004 90);
+  --card-foreground: oklch(0.23 0.008 75);
+  --popover: oklch(0.99 0.004 90);
+  --popover-foreground: oklch(0.23 0.008 75);
+  --primary: oklch(0.23 0.008 75);
+  --primary-foreground: oklch(0.972 0.006 90);
+  --secondary: oklch(0.935 0.012 80);
+  --secondary-foreground: oklch(0.23 0.008 75);
+  --muted: oklch(0.935 0.012 80);
+  --muted-foreground: oklch(0.5 0.014 75);
+  --accent: oklch(0.44 0.19 264);
+  --accent-foreground: oklch(0.98 0.004 90);
+  /* Controlled saturated palette */
+  --cobalt: oklch(0.44 0.19 264);
+  --lilac: oklch(0.8 0.08 300);
+  --coral: oklch(0.7 0.15 32);
+  --mineral: oklch(0.46 0.08 165);
+  --sand: oklch(0.88 0.04 75);
+  --stone: oklch(0.82 0.015 80);
   --oxide: oklch(0.55 0.15 42);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.885 0.008 90);
-  --input: oklch(0.885 0.008 90);
-  --ring: oklch(0.42 0.16 262);
+  --border: oklch(0.88 0.01 85);
+  --input: oklch(0.88 0.01 85);
+  --ring: oklch(0.44 0.19 264);
 }
 
 @layer base {
