@@ -458,7 +458,7 @@ function Journal() {
           </p>
           <ol className="mt-14">
             {journalEntries.map((e) => (
-              <li key={e.id} className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-border py-6">
+              <li key={e.id} className="grid grid-cols-[5.5rem_1fr] gap-x-6 border-t border-border py-6 sm:grid-cols-[8rem_1fr]">
                 <span className="font-mono text-[10px] tracking-[0.2em] text-accent">
                   {e.id}
                   <span className="mt-2 block text-foreground/30">{e.tag}</span>
