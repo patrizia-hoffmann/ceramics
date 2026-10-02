@@ -9,6 +9,9 @@ import materialTexture from "@/assets/material-texture.jpg";
 import journalKiln from "@/assets/journal-kiln.jpg";
 import editorialStill from "@/assets/editorial-still.jpg";
 import playgroundFragments from "@/assets/playground-fragments.jpg";
+import teamLarissa from "@/assets/team-larissa-wahl.jpg.asset.json";
+import teamSwantje from "@/assets/team-swantje-funk.jpg.asset.json";
+import teamPatrizia from "@/assets/team-patrizia-hoffmann.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
