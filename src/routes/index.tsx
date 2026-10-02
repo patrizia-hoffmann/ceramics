@@ -555,10 +555,10 @@ function WhoWeAre() {
             <p>
               OXID was founded by Dr. Larissa Wahl, Swantje Funk and Patrizia Hoffmann — three
               researchers from the Advanced Ceramics Manufacturing group at Friedrich-Alexander-
-              Universit&amp;auml;t Erlangen-N&amp;uuml;rnberg. Years around alumina, additive
-              manufacturing and high-temperature firing led to one observation: modern fabrication
-              tools for ceramics have barely reached wearables. We close that gap — combining
-              university research with commercial design for everyone.
+              Universität Erlangen-Nürnberg. Years around alumina, additive manufacturing and
+              high-temperature firing led to one observation: modern fabrication tools for ceramics
+              have barely reached wearables. We close that gap — combining university research with
+              commercial design for everyone.
             </p>
           </div>
           <p className="mt-6 max-w-xl border-l-2 border-cobalt/40 pl-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-foreground/45">
@@ -578,7 +578,7 @@ function WhoWeAre() {
                 <figcaption className="flex flex-1 flex-col justify-end px-3 pb-3 pt-4">
                   <span className="font-display text-lg font-bold tracking-normal sm:text-xl">{m.name}</span>
                   <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45">
-                    Ceramic engineering &amp; design
+                    Ceramic engineering & design
                   </span>
                 </figcaption>
               </figure>
