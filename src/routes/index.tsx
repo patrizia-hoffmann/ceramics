@@ -105,6 +105,7 @@ function SiteNav() {
     { label: "Material", href: "#material" },
     { label: "Process", href: "#process" },
     { label: "Playground", href: "#playground" },
+    { label: "About", href: "#about" },
     { label: "Journal", href: "#journal" },
   ];
   return (
@@ -507,6 +508,68 @@ function Journal() {
   );
 }
 
+/* -------------------------------- who we are ------------------------------ */
+
+const originPillars = [
+  {
+    tag: "01 / Origin",
+    title: "Where we come from",
+    body: "University, not the atelier. Materials science and ceramic engineering — alumina, kilns, tolerances — before jewellery.",
+    c: "bg-lilac/40",
+  },
+  {
+    tag: "02 / Gap",
+    title: "The gap we fill",
+    body: "Wearables that sit between worlds: designed like product, engineered like a component. Too technical for the jewellery shelf, too playful for the lab.",
+    c: "bg-card",
+  },
+  {
+    tag: "03 / Method",
+    title: "How we work",
+    body: "Modern fabrication tools for ceramics — parametric CAD, additive manufacturing, sintering — pointed at the body instead of the machine.",
+    c: "bg-mineral/20",
+  },
+];
+
+function WhoWeAre() {
+  return (
+    <section id="about" className={`${wrap} scroll-mt-24 pb-20 sm:pb-28 lg:pb-40`}>
+      <div className="grid gap-12 lg:grid-cols-12">
+        <p className="kicker text-foreground/45 lg:col-span-2">07 / Who we are</p>
+        <div className="lg:col-span-10">
+          <p className="font-display text-3xl font-bold leading-[1.05] tracking-normal sm:text-5xl lg:text-6xl">
+            We came from university.
+            <br />
+            <span className="text-cobalt">Now we use it on the body.</span>
+          </p>
+          <div className="mt-10 max-w-2xl leading-relaxed text-muted-foreground sm:text-lg">
+            <p>
+              OXID started with technical ceramics — the material of bearings, implants and machine
+              parts — and a simple observation: modern fabrication tools for ceramics have barely
+              reached wearables. We want to close that gap, between design and technical
+              engineering, with pieces that are both.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-3 sm:grid-cols-3">
+            {originPillars.map((p) => (
+              <div key={p.tag} className={`flex min-h-56 flex-col justify-between rounded-3xl p-6 sm:p-7 ${p.c}`}>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/50">{p.tag}</span>
+                <div>
+                  <h3 className="font-display text-2xl font-bold tracking-tight">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
+            Names, institutions and team details — placeholders
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* --------------------------------- footer -------------------------------- */
 
 function Footer() {
@@ -516,7 +579,7 @@ function Footer() {
     ["Process", "#process"],
     ["Playground", "#playground"],
     ["Journal", "#journal"],
-    ["About", "#concept"],
+    ["About", "#about"],
     ["Contact", "#contact"],
     ["Instagram", "#"],
   ];
@@ -570,6 +633,7 @@ function Index() {
         <Process />
         <Playground />
         <Journal />
+        <WhoWeAre />
       </main>
       <Footer />
     </div>
