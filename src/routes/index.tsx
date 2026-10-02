@@ -247,7 +247,7 @@ function Concept() {
             A product design brand born from{" "}
              <span className="box-decoration-clone rounded-lg bg-lilac/50 px-2 sm:rounded-full sm:px-3">ceramic engineering</span>. We print
             alumina into geometries casting can't reach — then let{" "}
-             <span className="rounded-full bg-coral/30 px-2 sm:px-3">colour</span> and play do the rest.
+             <span className="rounded-full bg-coral/30 px-2 sm:px-3">colour</span> and design do the rest.
           </p>
           <div className="mt-14 grid gap-8 text-muted-foreground sm:grid-cols-3">
             {[
@@ -513,23 +513,29 @@ function Journal() {
 
 /* -------------------------------- who we are ------------------------------ */
 
+const team = [
+  { name: "Dr. Larissa Wahl", role: "Co-founder", img: teamLarissa, dot: "bg-cobalt", alt: "Portrait of Dr. Larissa Wahl" },
+  { name: "Swantje Funk", role: "Co-founder", img: teamSwantje, dot: "bg-coral", alt: "Portrait of Swantje Funk" },
+  { name: "Patrizia Hoffmann", role: "Co-founder", img: teamPatrizia, dot: "bg-mineral", alt: "Portrait of Patrizia Hoffmann wearing layered jewellery" },
+];
+
 const originPillars = [
   {
     tag: "01 / Origin",
     title: "Where we come from",
-    body: "University, not the atelier. Materials science and ceramic engineering — alumina, kilns, tolerances — before jewellery.",
+    body: "The research lab, not the atelier. Materials science and ceramic engineering at the Chair of Glass and Ceramics, FAU Erlangen-Nürnberg — alumina, printers, kilns, tolerances.",
     c: "bg-lilac/40",
   },
   {
     tag: "02 / Gap",
     title: "The gap we fill",
-    body: "Wearables that sit between worlds: designed like product, engineered like a component. Too technical for the jewellery shelf, too playful for the lab.",
+    body: "Wearables that sit between worlds: engineered like a component, designed like product. Too technical for the jewellery shelf, too design-driven for the lab.",
     c: "bg-card",
   },
   {
     tag: "03 / Method",
     title: "How we work",
-    body: "Modern fabrication tools for ceramics — parametric CAD, additive manufacturing, sintering — pointed at the body instead of the machine.",
+    body: "University-grade research combined with commercial product design — parametric CAD, additive manufacturing and sintering, applied to the body instead of the machine.",
     c: "bg-mineral/20",
   },
 ];
@@ -543,17 +549,43 @@ function WhoWeAre() {
           <p className="font-display text-3xl font-bold leading-[1.05] tracking-normal sm:text-5xl lg:text-6xl">
             We came from university.
             <br />
-            <span className="text-cobalt">Now we use it on the body.</span>
+            <span className="text-cobalt">Now we design for everyone.</span>
           </p>
           <div className="mt-10 max-w-2xl leading-relaxed text-muted-foreground sm:text-lg">
             <p>
-              OXID started with technical ceramics — the material of bearings, implants and machine
-              parts — and a simple observation: modern fabrication tools for ceramics have barely
-              reached wearables. We want to close that gap, between design and technical
-              engineering, with pieces that are both.
+              OXID was founded by Dr. Larissa Wahl, Swantje Funk and Patrizia Hoffmann — three
+              researchers from the Advanced Ceramics Manufacturing group at Friedrich-Alexander-
+              Universit&amp;auml;t Erlangen-N&amp;uuml;rnberg. Years around alumina, additive
+              manufacturing and high-temperature firing led to one observation: modern fabrication
+              tools for ceramics have barely reached wearables. We close that gap — combining
+              university research with commercial design for everyone.
             </p>
           </div>
+          <p className="mt-6 max-w-xl border-l-2 border-cobalt/40 pl-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-foreground/45">
+            Research basis — interlocking ceramic joints, developed and published at the chair
+            (Hoffmann, Wahl, Funk, 2025)
+          </p>
+
           <div className="mt-14 grid gap-3 sm:grid-cols-3">
+            {team.map((m) => (
+              <figure key={m.name} className="flex flex-col rounded-3xl bg-card p-3">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
+                  <img src={m.img.url} alt={m.alt} loading="lazy" className="h-full w-full object-cover" />
+                  <span className={`${tag} absolute left-3 top-3`}>
+                    <span className={`h-1.5 w-1.5 rounded-full ${m.dot}`} /> {m.role}
+                  </span>
+                </div>
+                <figcaption className="flex flex-1 flex-col justify-end px-3 pb-3 pt-4">
+                  <span className="font-display text-lg font-bold tracking-normal sm:text-xl">{m.name}</span>
+                  <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45">
+                    Ceramic engineering &amp; design
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
             {originPillars.map((p) => (
               <div key={p.tag} className={`flex min-h-56 flex-col justify-between rounded-3xl p-6 sm:p-7 ${p.c}`}>
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/50">{p.tag}</span>
@@ -565,7 +597,7 @@ function WhoWeAre() {
             ))}
           </div>
           <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
-            Names, institutions and team details — placeholders
+            Job titles and personal details — placeholders
           </p>
         </div>
       </div>
