@@ -646,7 +646,7 @@ function Footer() {
         </div>
         <div className="relative mt-16 flex flex-col gap-3 border-t border-background/15 pt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-background/40 sm:flex-row sm:justify-between">
           <span>© 2026 OXID — prototype</span>
-          <span>Names, prices and contact details are placeholders</span>
+          <span>Prices and contact details are placeholders</span>
         </div>
       </div>
     </footer>
